@@ -1,80 +1,70 @@
 # Análisis geoespacial
 
-**Sistemas convectivos de mesoescala (SCM) y generación solar fotovoltaica en el Magdalena**
+**Nubosidad, precipitación y desempeño de las plantas solares fotovoltaicas de Colombia: un análisis geoespacial**
 
 Proyecto del curso *Análisis Geoespacial* — Universidad Nacional de Colombia, Sede Medellín, Facultad de Minas, Departamento de Geociencias y Medio Ambiente.
 Profesor: Edier Vicente Aristizabal Giraldo · Semestre 2026-02 · Autor: David Moreno Yepes
 
 ## Pregunta de investigación
 
-¿Cuánto reduce el paso de SCM la generación fotovoltaica en el Magdalena, y cómo varía esa reducción con la distancia al sistema, su etapa del ciclo de vida, la hora del día y el relieve?
+¿Cuánto explican la nubosidad y la precipitación las diferencias espaciales y estacionales del factor de planta de las plantas solares fotovoltaicas de Colombia, y cambia esa relación entre regiones climáticas?
 
-Periodo de los datos: **octubre de 2024** (imágenes GOES cada 10 min) · Área: departamento del Magdalena.
+- **Periodo:** enero 2023 – diciembre 2024, paso mensual.
+- **Unidad de análisis:** planta solar × mes.
+- **Variable respuesta:** factor de planta = energía del mes ÷ (capacidad × horas del mes).
 
-## Estructura
+## Estructura del repositorio
 
 ```
+Analisis-geoespacial/
 ├── datos/
-│   ├── crudos/
-│   │   ├── tb/                    # temperatura de brillo GOES canal 13 (10,3 µm), un NetCDF por día
-│   │   ├── vis/                   # reflectancia visible GOES canal 2 (0,64 µm)
-│   │   └── xm_listado_recursos.csv
-│   └── procesados/
-│       ├── region.gpkg, municipios.gpkg, parques.gpkg   # límites y parques solares
-│       ├── dem_2km.tif                                   # DEM Copernicus remuestreado a 2 km
-│       ├── irradiancia_202410.nc                         # irradiancia estimada desde satélite
-│       ├── scm_mascara.nc, scm_poligonos.gpkg, scm_trayectorias.csv   # SCM identificados y seguidos
-│       ├── fv_parques_horario.csv                        # generación FV estimada por parque
-│       └── xm_recursos_solares.csv                       # plantas solares registradas en XM
-├── desarrollo/
-│   ├── notebooks/   # 00–08: descarga y procesamiento (Jupyter), con config.py y utils.py
-│   ├── scripts/     # misma secuencia como scripts .py + guía del proyecto
-│   └── mapas/       # mapas generados (área de estudio, DEM, irradiancia, frecuencia de SCM)
-└── requirements.txt
+│   ├── crudos/          # descargas originales (XM, OSM, CHIRPS, EarthEnv…)
+│   └── procesados/      # capas y tablas listas para el análisis
+└── desarrollo/
+    ├── descarga_datos_v2.ipynb   # notebook que descarga todos los datos y genera los mapas
+    ├── requirements.txt
+    └── mapas/                    # mapas de la presentación (sección 7 del notebook)
 ```
 
-## Flujo de trabajo
+> Los archivos de `datos/` se generan al ejecutar el notebook; ver `datos/README.md`.
 
-| Notebook | Qué hace | Tipo de dato |
-|---|---|---|
-| 00 | Instalación y configuración | — |
-| 01 | Límites (geoBoundaries) y ubicación de parques | Área / punto |
-| 02 | Modelo digital de elevación Copernicus GLO-30, pendiente y orientación | Superficie |
-| 03 | Descarga de GOES-16/19 ABI (canales 2 y 13) desde AWS | Superficie |
-| 04 | Irradiancia (GHI) estimada desde satélite | Superficie |
-| 05 | Identificación y seguimiento de SCM (Tb ≤ 241 K) | Área |
-| 06 | Generación FV estimada en los parques | Punto |
-| 07 | Generación real de XM | Punto |
-| 08 | Análisis espacial | — |
+## Datos
 
-## Cómo ejecutar
+| Tipo | Dato | Fuente | Resolución |
+|---|---|---|---|
+| Punto | Generación real por planta → factor de planta mensual | XM (API Sinergox) | horaria → mensual |
+| Punto | Ubicación de las plantas | Global Energy Monitor + OpenStreetMap | — |
+| Punto | Nubosidad, radiación, índice de claridad, lluvia y temperatura en cada planta | NASA POWER | mensual, ~0,5° |
+| Área | Departamentos y municipios | geoBoundaries (DANE) | — |
+| Área | Régimen pluviométrico 1981–2010 | IDEAM (OGC API Features) | — |
+| Área | Zonas de radiación solar global promedio multianual | IDEAM (OGC API Features) | — |
+| Superficie | Precipitación mensual CHIRPS v2.0 | UCSB/CHC vía ERDDAP de NOAA | 0,05° (~5 km) |
+| Superficie | Frecuencia de nubes MODIS | EarthEnv (Wilson y Jetz, 2016) | ~1 km |
+| Superficie | Elevación en cada planta | Copernicus GLO-30 | 30 m |
 
-```bash
-pip install -r requirements.txt
-```
+Todas las fuentes son públicas y no requieren cuenta. Ver `datos/README.md`.
 
-`config.py` busca los datos en una carpeta `datos/` junto a los notebooks. Para reutilizar los datos de este repositorio sin descargarlos de nuevo, copia `datos/` dentro de `desarrollo/notebooks/` (o cambia `DATA` en `config.py`).
+## Cómo reproducir
 
-## Archivos no incluidos
-
-GitHub no acepta archivos de más de 100 MB. Estos se generan de nuevo con el notebook 02:
-
-| Archivo | Tamaño |
-|---|---|
-| `crudos/dem_mosaico.tif` | 463 MB |
-| `procesados/dem_region_30m.tif` | 120 MB |
-| `procesados/pendiente_grados.tif` | 135 MB |
-| `procesados/orientacion_grados.tif` | 130 MB |
+1. `pip install -r desarrollo/requirements.txt`
+2. Abrir `desarrollo/descarga_datos_v2.ipynb` (Jupyter o Google Colab) y ejecutar las celdas en orden.
+3. Los datos quedan en `datos/` y los mapas en `resultados/mapas_presentacion/`.
 
 ## Mapas
 
-| | |
-|---|---|
-| ![](desarrollo/mapas/mapa_area_estudio.png) | ![](desarrollo/mapas/mapa_dem.png) |
-| ![](desarrollo/mapas/mapa_irradiancia_media.png) | ![](desarrollo/mapas/mapa_frecuencia_scm.png) |
+![Resumen de los mapas](desarrollo/mapas/00_resumen_mapas.png)
 
-![](desarrollo/mapas/scm_descriptivos.png)
+| | | |
+|---|---|---|
+| ![](desarrollo/mapas/01_plantas_factor_planta.png) | ![](desarrollo/mapas/02_nubosidad_plantas.png) | ![](desarrollo/mapas/03_regimen_pluviometrico.png) |
+| Plantas y factor de planta (XM) | Nubosidad en cada planta (NASA POWER) | Régimen de lluvias (IDEAM) |
+| ![](desarrollo/mapas/04_zonas_radiacion.png) | ![](desarrollo/mapas/05_precipitacion_chirps.png) | ![](desarrollo/mapas/06_nubes_modis.png) |
+| Zonas de radiación (IDEAM) | Lluvia media anual (CHIRPS) | Frecuencia de nubes (MODIS) |
 
-## Fuentes
+## Referencias principales
 
-GOES-16/19 ABI (NOAA, AWS Open Data) · Copernicus GLO-30 (ESA) · XM S.A. E.S.P. (Sinergox) · geoBoundaries · Global Energy Monitor.
+- Funk, C., et al. (2015). The climate hazards infrared precipitation with stations—a new environmental record for monitoring extremes. *Scientific Data*, 2, 150066.
+- Wilson, A. M., y Jetz, W. (2016). Remotely sensed high-resolution global cloud dynamics for predicting ecosystem and biodiversity distributions. *PLoS Biology*, 14(3), e1002415.
+- NASA Langley Research Center. Prediction Of Worldwide Energy Resources (POWER). https://power.larc.nasa.gov
+- XM S.A. E.S.P. Sinergox. https://sinergox.xm.com.co
+- IDEAM. Visualizador de información geográfica. https://visualizador.ideam.gov.co

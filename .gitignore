@@ -1,7 +1,3 @@
 __pycache__/
 .ipynb_checkpoints/
 *.pyc
-datos/crudos/dem_mosaico.tif
-datos/procesados/dem_region_30m.tif
-datos/procesados/pendiente_grados.tif
-datos/procesados/orientacion_grados.tif
