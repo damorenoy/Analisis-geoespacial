@@ -4,6 +4,7 @@ Archivos generados por `desarrollo/descarga_datos_v2.ipynb`.
 
 ## `crudos/`
 - `xm_listado_recursos.csv`, `xm/gene_AAAA-MM.csv` — generación horaria por recurso (XM)
+- `xm/<Métrica>_AAAA-MM.csv` — GeneIdea, GeneProgDesp, GeneProgRedesp, DispoReal, DispoDeclarada (horarias) e IrrGlobal, IrrPanel, TempPanel, TempAmbSolar (diarias) de las plantas solares
 - `osm_plantas_solares.json` — plantas solares de OpenStreetMap (Overpass)
 - `chirps_mensual_colombia.nc` — precipitación mensual CHIRPS 2023–2024
 - `chirps_diario_plantas.csv` — precipitación diaria CHIRPS en el píxel de cada planta
@@ -15,6 +16,7 @@ Archivos generados por `desarrollo/descarga_datos_v2.ipynb`.
 - `departamentos.gpkg`, `municipios.gpkg` — geoBoundaries
 - `regimen_pluviometrico_ideam.gpkg`, `zonas_radiacion_ideam.gpkg` — IDEAM
 - `xm_recursos_solares.csv`, `xm_generacion_mensual.csv` — plantas solares y energía / factor de planta mensual
+- `xm_despacho_mensual.csv` — despacho ideal, generación programada, disponibilidad, desvío real − programada, irradiación y temperatura medidas, por planta y mes
 - `plantas_solares.gpkg` — ubicación de las plantas con departamento, régimen, zona de radiación y elevación
 - `power_mensual_plantas.csv` — variables NASA POWER por planta y mes
 - `ideam_estaciones_por_planta.csv` — estaciones del IDEAM a ≤ 30 km de cada planta y su distancia
