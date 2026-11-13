@@ -3,6 +3,7 @@
 Archivos generados por `desarrollo/descarga_datos_v2.ipynb`.
 
 ## `crudos/`
+- `ideam_normales_1981_2010.xlsx` — normales climatológicas del IDEAM (incluido en el repositorio; el notebook lo lee de aquí)
 - `xm_listado_recursos.csv`, `xm/gene_AAAA-MM.csv` — generación horaria por recurso (XM)
 - `xm/<Métrica>_AAAA-MM.csv` — GeneIdea, GeneProgDesp, GeneProgRedesp, DispoReal, DispoDeclarada (horarias) e IrrGlobal, IrrPanel, TempPanel, TempAmbSolar (diarias) de las plantas solares
 - `osm_plantas_solares.json` — plantas solares de OpenStreetMap (Overpass)
@@ -21,6 +22,8 @@ Archivos generados por `desarrollo/descarga_datos_v2.ipynb`.
 - `power_mensual_plantas.csv` — variables NASA POWER por planta y mes
 - `ideam_estaciones_por_planta.csv` — estaciones del IDEAM a ≤ 30 km de cada planta y su distancia
 - `ideam_estaciones_mensual.csv`, `ideam_estaciones.gpkg` — lluvia, días de lluvia, temperatura y humedad mensual por estación
+- `ideam_normales_1981_2010.csv` — normales en formato largo (estación, variable, mes, valor) con coordenadas decimales
+- `ideam_normales_por_planta.csv` — normal de la estación más cercana a cada planta (y brillo solar interpolado por IDW)
 - `chirps_diario_mensual_plantas.csv` — lluvia mensual, días de lluvia y día más lluvioso (CHIRPS diario) por planta
 - panel planta × mes (sección 5 del notebook)
 

@@ -37,6 +37,7 @@ Analisis-geoespacial/
 | Punto | Ubicación de las plantas | Global Energy Monitor + OpenStreetMap | — |
 | Punto | Nubosidad, radiación, índice de claridad, lluvia y temperatura en cada planta | NASA POWER | mensual, ~0,5° |
 | Punto | Estaciones del IDEAM cercanas (≤ 30 km): precipitación, días de lluvia, temperatura y humedad observadas | IDEAM, Datos Abiertos (datos.gov.co) | 10 min → diaria → mensual |
+| Punto | Normales climatológicas 1981–2010: lluvia, días de lluvia, temperatura, brillo solar, humedad, evaporación (≈340–2.000 estaciones) | IDEAM, «Promedios Climatológicos 1981–2010» | mensual (climatología) |
 | Punto | Precipitación diaria CHIRPS en cada planta → días de lluvia y día más lluvioso | UCSB/CHC vía ERDDAP de NOAA | diaria, 0,05° |
 | Área | Departamentos y municipios | geoBoundaries (DANE) | — |
 | Área | Régimen pluviométrico 1981–2010 | IDEAM (OGC API Features) | — |
