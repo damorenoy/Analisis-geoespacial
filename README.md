@@ -35,6 +35,8 @@ Analisis-geoespacial/
 | Punto | Generación real por planta → factor de planta mensual | XM (API Sinergox) | horaria → mensual |
 | Punto | Ubicación de las plantas | Global Energy Monitor + OpenStreetMap | — |
 | Punto | Nubosidad, radiación, índice de claridad, lluvia y temperatura en cada planta | NASA POWER | mensual, ~0,5° |
+| Punto | Estaciones del IDEAM cercanas (≤ 30 km): precipitación, días de lluvia, temperatura y humedad observadas | IDEAM, Datos Abiertos (datos.gov.co) | 10 min → diaria → mensual |
+| Punto | Precipitación diaria CHIRPS en cada planta → días de lluvia y día más lluvioso | UCSB/CHC vía ERDDAP de NOAA | diaria, 0,05° |
 | Área | Departamentos y municipios | geoBoundaries (DANE) | — |
 | Área | Régimen pluviométrico 1981–2010 | IDEAM (OGC API Features) | — |
 | Área | Zonas de radiación solar global promedio multianual | IDEAM (OGC API Features) | — |
