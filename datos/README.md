@@ -10,7 +10,7 @@ Archivos generados por `desarrollo/descarga_datos_v2.ipynb`.
 - `chirps_mensual_colombia.nc` — precipitación mensual CHIRPS 2023–2024
 - `chirps_diario_plantas.csv` — precipitación diaria CHIRPS en el píxel de cada planta
 - `ideam_catalogo_estaciones.csv` — Catálogo Nacional de Estaciones del IDEAM
-- `ideam_precipitacion_diaria.csv`, `ideam_temperatura_diaria.csv`, `ideam_humedad_diaria.csv` — series diarias de las estaciones cercanas a las plantas
+- (notebook `descarga_estaciones_ideam.ipynb`) `ideam_precipitacion_diaria.csv`, `ideam_temperatura_diaria.csv`, `ideam_humedad_diaria.csv` — series diarias de las estaciones cercanas a las plantas
 - `earthenv_nubes/nubes_MM_colombia.tif`, `nubes_anual_colombia.tif` — frecuencia de nubes (valores × 100)
 
 ## `procesados/`
@@ -25,6 +25,9 @@ Archivos generados por `desarrollo/descarga_datos_v2.ipynb`.
 - `ideam_normales_1981_2010.csv` — normales en formato largo (estación, variable, mes, valor) con coordenadas decimales
 - `ideam_normales_por_planta.csv` — normal de la estación más cercana a cada planta (y brillo solar interpolado por IDW)
 - `chirps_diario_mensual_plantas.csv` — lluvia mensual, días de lluvia y día más lluvioso (CHIRPS diario) por planta
-- panel planta × mes (sección 5 del notebook)
+- `panel_plantas_mes.csv` — panel planta × mes (sección 5)
+- `desviaciones_horarias.csv`, `desviaciones_diarias.csv`, `desviaciones_mensuales.csv` — generación real vs. programada (sección 8)
+- `desviaciones_resumen_plantas.csv`, `_regiones.csv`, `_departamentos.csv`, `_regimen.csv` — indicadores de desviación
+- `desviaciones_eventos_sobre_15pct.csv` — días y meses con |desviación| > 15 %
 
 > GitHub no acepta archivos de más de 100 MB (25 MB si se suben desde la web). Si algún archivo los supera (p. ej. el NetCDF de CHIRPS), se puede regenerar con el notebook o guardar con Git LFS.

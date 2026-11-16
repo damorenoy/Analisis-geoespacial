@@ -21,7 +21,8 @@ Analisis-geoespacial/
 │   ├── crudos/          # descargas originales (XM, OSM, CHIRPS, EarthEnv…)
 │   └── procesados/      # capas y tablas listas para el análisis
 └── desarrollo/
-    ├── descarga_datos_v2.ipynb   # notebook que descarga todos los datos y genera los mapas
+    ├── descarga_datos_v2.ipynb          # descarga los datos, arma la tabla panel, mapas y desviaciones real vs. programada (XM)
+    ├── descarga_estaciones_ideam.ipynb  # (aparte, lento) series de estaciones del IDEAM desde datos.gov.co
     ├── requirements.txt
     └── mapas/                    # mapas de la presentación (sección 7 del notebook)
 ```
@@ -36,7 +37,7 @@ Analisis-geoespacial/
 | Punto | Despacho ideal, generación programada (despacho y redespacho), disponibilidad, irradiación y temperatura medidas en cada planta | XM (API Sinergox) | horaria / diaria → mensual |
 | Punto | Ubicación de las plantas | Global Energy Monitor + OpenStreetMap | — |
 | Punto | Nubosidad, radiación, índice de claridad, lluvia y temperatura en cada planta | NASA POWER | mensual, ~0,5° |
-| Punto | Estaciones del IDEAM cercanas (≤ 30 km): precipitación, días de lluvia, temperatura y humedad observadas | IDEAM, Datos Abiertos (datos.gov.co) | 10 min → diaria → mensual |
+| Punto | Estaciones del IDEAM cercanas (≤ 30 km): precipitación, días de lluvia, temperatura y humedad observadas | IDEAM, Datos Abiertos (datos.gov.co) — notebook aparte | 10 min → diaria → mensual |
 | Punto | Normales climatológicas 1981–2010: lluvia, días de lluvia, temperatura, brillo solar, humedad, evaporación (≈340–2.000 estaciones) | IDEAM, «Promedios Climatológicos 1981–2010» | mensual (climatología) |
 | Punto | Precipitación diaria CHIRPS en cada planta → días de lluvia y día más lluvioso | UCSB/CHC vía ERDDAP de NOAA | diaria, 0,05° |
 | Área | Departamentos y municipios | geoBoundaries (DANE) | — |
@@ -53,6 +54,10 @@ Todas las fuentes son públicas y no requieren cuenta. Ver `datos/README.md`.
 1. `pip install -r desarrollo/requirements.txt`
 2. Abrir `desarrollo/descarga_datos_v2.ipynb` (Jupyter o Google Colab) y ejecutar las celdas en orden.
 3. Los datos quedan en `datos/` y los mapas en `resultados/mapas_presentacion/`.
+
+## Desviaciones de generación (XM)
+
+La sección 8 de `descarga_datos_v2.ipynb` compara la generación real con la programada en el despacho, hora a hora, por día y por mes. Calcula el tamaño típico de la desviación, el sesgo, la mayor desviación y el % de periodos que pasan el 15 %, por planta, departamento, región natural y régimen de lluvias. Los mapas y gráficos quedan en `resultados/desviaciones/`.
 
 ## Mapas
 
