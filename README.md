@@ -9,7 +9,7 @@ Profesor: Edier Vicente Aristizabal Giraldo · Semestre 2026-02 · Autor: David 
 
 ¿Cuánto explican la nubosidad y la precipitación las diferencias espaciales y estacionales del factor de planta de las plantas solares fotovoltaicas de Colombia, y cambia esa relación entre regiones climáticas?
 
-- **Periodo:** enero 2023 – diciembre 2024, paso mensual.
+- **Periodo:** enero 2019 – diciembre 2025, paso mensual (se cambia con `INICIO` y `FIN`).
 - **Unidad de análisis:** planta solar × mes.
 - **Variable respuesta:** factor de planta = energía del mes ÷ (capacidad × horas del mes).
 
